@@ -1,0 +1,32 @@
+{
+  "name": "express-workshop",
+  "version": "1.0.0",
+  "description": "An API using express.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NadorSheldsen/express-workshop.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "jwl",
+    "mysql"
+  ],
+  "author": "NadorSheldsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NadorSheldsen/express-workshop/issues"
+  },
+  "homepage": "https://github.com/NadorSheldsen/express-workshop#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.0.1"
+  }
+}
