@@ -21,7 +21,7 @@ empleado.post("/", async (req, res, next) => {
     return res.status(500).json({ code: 500, message: "Campos incompletos" });
 });
 
-empleado.delete("/:id([0-9]{1,3})", async (req, res, next) => {
+empleado.delete("/:idEmp([0-9]{1,3})", async (req, res, next) => {
     const query = `DELETE FROM empleado WHERE IdEmp=${req.params.id}`;
     const rows = await db.query(query);
 
@@ -32,7 +32,7 @@ empleado.delete("/:id([0-9]{1,3})", async (req, res, next) => {
     return res.status(404).json({ code: 404, message: "Empleado no encontrado" });
 });
 
-empleado.put("/:id([0-9]{1,3})", async (req, res, next) => {
+empleado.put("/:idEmp([0-9]{1,3})", async (req, res, next) => {
     const { NombreEmp, ApellidosEmp, TelefonoEmp, CorreoEmp, DireccionEmp } = req.body;
 
     if (NombreEmp && ApellidosEmp && TelefonoEmp && CorreoEmp && DireccionEmp) {
@@ -51,9 +51,9 @@ empleado.put("/:id([0-9]{1,3})", async (req, res, next) => {
     return res.status(500).json({ code: 500, message: "Campos incompletos" });
 });
 
-empleado.patch("/:id([0-9]{1,3}", async (req, res, next) => {
+empleado.patch("/:nombreEmp([A-Za-z]+)", async (req, res, next) => {
     if (req.body.NombreEmp) {
-        let query = `UPDATE empleado SET NombreEmp='${req.body.NombreEmp}' WHERE IdEmp = ${req.params.id};`;
+        let query = `UPDATE empleado SET NombreEmp='${req.body.NombreEmp}' WHERE IdEmp = ${req.params.idEmp};`;
         const rows = await db.query(query);
 
         if (rows.affectedRows === 1) {
@@ -71,7 +71,7 @@ empleado.get("/", async (req, res, next) => {
     return res.status(200).json({ code: 200, message: employees });
 });
 
-empleado.get("/:id([0-9]{1,3})", async (req, res, next) => {
+empleado.get("/:idEmp([0-9]{1,3})", async (req, res, next) => {
     const id = req.params.id;
     if (id >= 1 && id <= 722) {
         const employee = await db.query("SELECT * FROM empleado WHERE IdEmp=" + id + ";");
@@ -80,7 +80,7 @@ empleado.get("/:id([0-9]{1,3})", async (req, res, next) => {
     return res.status(404).json({ code: 404, message: "Empleado no encontrado" });
 });
 
-empleado.get("/:name([A-Za-z]+)", async (req, res, next) => {
+empleado.get("/:nombreEmp([A-Za-z]+)", async (req, res, next) => {
     const name = req.params.name;
     const employee = await db.query("SELECT * FROM empleado WHERE IdEmp=" + name + ";");
     if (employee.length > 0) {

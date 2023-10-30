@@ -1,16 +1,15 @@
 const morgan = require('morgan')
 const express = require('express');
 const app = express();
-const empleado = require('./routes/empleado')
 const user = require('./routes/user');
 const empleado = require('./routes/empleado');
 
 const auth = require('./middleware/auth');
-const notFound = require('./middleware/notFound');
+const notFound = require('./middleware/notFound.js');
 const index = require('./middleware/index');
 const cors = require('./middleware/cors');
 
-
+app.use(cors);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

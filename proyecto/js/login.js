@@ -5,10 +5,10 @@ function init()
     if(!localStorage.getItem("token"))
     {
         document.querySelector('.btn-secondary').addEventListener('click', function() {
-            window.location.href = "singnin.html"
+            window.location.href = "signin.html"
         });
 
-        document.querySelector('.btn.primary').addEventListener('click', login);
+        document.querySelector('.btn-primary').addEventListener('click', login);
     }
     else{
         window.location.href = "proyecto.html";

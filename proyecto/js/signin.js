@@ -3,28 +3,32 @@ window.onload = init;
 function init()
 {
     document.querySelector('.btn-secondary').addEventListener('click', function(){
-        window.location.href = "signing.html"
+        window.location.href = "login.html"
     });
 
-    document.querySelector('.btn-primary').addEventListener('click', login);
+    document.querySelector('.btn-primary').addEventListener('click', signin);
 }
 
-function login()
+function signin()
 {
+    var name = document.getElementById('input-name').value;
     var mail = document.getElementById('input-mail').value;
     var pass = document.getElementById('input-password').value;
 
-    console.log(mail, pass);
     axios({
         method: 'post',
-        ulr: 'http://localhost:3000/user/login',
+        ulr: 'http://localhost:3000/user/signin',
         data: {
+            user_name: name,
             user_mail: mail,
             user_password: pass
         }
-    }).then(function(res){
+    }).then(function(res) {
         console.log(res);
-    }).catch(function(err){
-        console.log(err)
+        alert("registro exitoso");
+        window.location.href = "login.html";
+    }).catch(function(err) {
+        console.log(err);
+        alert("Algo salió mal");
     })
 }
